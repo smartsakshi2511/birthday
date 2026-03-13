@@ -320,11 +320,42 @@ justify-content:center;
 align-items:center;
 flex-direction:column;
 }
+#terminal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+color:#00ff90;
+font-family:monospace;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:20000;
+}
+
+#terminal-box{
+width:80%;
+max-width:700px;
+text-align:left;
+font-size:20px;
+line-height:1.6;
+}
 
 </style>
 </head>
 
 <body> 
+    <div id="terminal">
+
+<div id="terminal-box">
+
+<p id="terminal-text"></p>
+
+</div>
+
+</div>
 <div id="loading-screen">
 
 <h2>Downloading Sakshi's Birthday Surprise for Ashutosh ❤️</h2>
@@ -337,13 +368,13 @@ flex-direction:column;
 
 </div>
  
-<!-- <div id="timer-overlay">
+<div id="timer-overlay">
 
 <h1>Wait for it Ashutosh 🤫</h1>
 <p>Your birthday surprise unlocks at midnight</p>
 <h2 id="countdown"></h2>
 
-</div> -->
+</div>
 
 <div class="container">
 
@@ -569,6 +600,56 @@ jo meri life ko special banata hai ❤️
 </div>
 
 <script> 
+const terminalLines = [
+"Initializing Love Engine...",
+"Loading Ashutosh.exe",
+"Checking compatibility...",
+"Installing Sakshi Love Module...",
+"System Status: Loved Forever ❤️",
+"Launching Birthday Surprise..."
+]
+
+let lineIndex = 0
+let charIndex = 0
+
+const terminalText = document.getElementById("terminal-text")
+
+function typeTerminal(){
+
+if(lineIndex < terminalLines.length){
+
+if(charIndex < terminalLines[lineIndex].length){
+
+terminalText.innerHTML += terminalLines[lineIndex].charAt(charIndex)
+charIndex++
+
+setTimeout(typeTerminal,40)
+
+}
+else{
+
+terminalText.innerHTML += "<br>"
+lineIndex++
+charIndex = 0
+
+setTimeout(typeTerminal,500)
+
+}
+
+}
+else{
+
+setTimeout(()=>{
+
+document.getElementById("terminal").style.display="none"
+
+},1000)
+
+}
+
+}
+
+typeTerminal()
 
 let load=0
 
