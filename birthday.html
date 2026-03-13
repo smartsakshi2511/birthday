@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Favorite Ashu ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+
+:root{
+--pink:#ff758c;
+--dark-pink:#ff4b6e;
+--glass-border:rgba(255,255,255,0.3);
+}
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(-45deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);
+background-size:400% 400%;
+animation:gradientBG 15s ease infinite;
+color:white;
+text-align:center;
+content:"❤️ ❤️ ❤️ ❤️ ❤️";
+}
+
+
+@keyframes gradientBG{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+body::after{
+content:"❤️ ❤️ ❤️ ❤️ ❤️";
+position:fixed;
+bottom:-50px;
+left:0;
+width:100%;
+font-size:20px;
+opacity:0.2;
+animation:floatHearts 15s linear infinite;
+pointer-events:none;
+}
+
+@keyframes floatHearts{
+0%{transform:translateY(0)}
+100%{transform:translateY(-120vh)}
+}
+
+.container{
+max-width:800px;
+margin:auto;
+padding:40px 20px;
+}
+
+h1{
+font-family:'Dancing Script';
+font-size:4rem;
+
+text-shadow:
+0 0 10px rgba(255,255,255,0.7),
+0 0 20px rgba(255,118,140,0.8),
+0 0 30px rgba(255,118,140,0.6);
+
+animation:titleGlow 3s infinite alternate;
+}
+
+@keyframes titleGlow{
+from{
+text-shadow:0 0 10px #fff;
+}
+to{
+text-shadow:0 0 25px #ff758c;
+}
+}
+.hero-card{
+border:2px solid rgba(255,255,255,0.4);
+background:linear-gradient(
+135deg,
+rgba(255,255,255,0.25),
+rgba(255,255,255,0.05)
+);
+}
+
+.glass-card{
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+border:1px solid var(--glass-border);
+border-radius:24px;
+padding:30px;
+margin:25px 0;
+position:relative;
+overflow:hidden;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+
+animation:cardAppear 1s ease forwards;
+opacity:0;
+transform:translateY(40px);
+
+transition:all 0.4s ease;
+}
+
+@keyframes cardAppear{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+.glass-card:hover{
+transform:translateY(-8px) scale(1.02);
+box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+.glass-card::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:60%;
+height:100%;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,0.5),
+transparent
+);
+transform:skewX(-25deg);
+}
+
+.glass-card:hover::before{
+animation:shine 1.2s;
+}
+
+@keyframes shine{
+100%{
+left:150%;
+}
+}
+
+button{
+padding:15px 40px;
+border:none;
+border-radius:50px;
+font-size:1.1rem;
+cursor:pointer;
+}
+
+#yes{background:white;color:#ff4b6e}
+#no{background:transparent;color:white;border:1px solid white;position:absolute}
+
+.btn-container{
+height:120px;
+position:relative;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+#gameArea{
+height:300px;
+border:2px dashed white;
+border-radius:20px;
+position:relative;
+overflow:hidden;
+}
+
+.progress-container{
+background:rgba(255,255,255,0.2);
+height:10px;
+border-radius:10px;
+}
+
+#progress-bar{
+height:100%;
+width:0%;
+background:#2ecc71;
+border-radius:10px;
+}
+
+#secretMessage{
+display:none;
+background:white;
+color:black;
+}
+
+.voucher{
+border:3px dashed #ff4b6e;
+padding:20px;
+border-radius:15px;
+}
+
+#lovePopup{
+
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
+z-index:99999;
+
+}
+
+.popup-card{
+
+background:white;
+color:black;
+padding:40px;
+border-radius:20px;
+max-width:400px;
+text-align:center;
+
+}
+
+.popup-card button{
+
+margin-top:20px;
+background:#ff4b6e;
+color:white;
+padding:12px 25px;
+border:none;
+border-radius:10px;
+
+}
+
+#cake{
+font-size:80px;
+cursor:pointer;
+transition:0.5s;
+}
+
+#cake:hover{
+transform:scale(1.2)
+}
+
+.timeline{
+border-left:3px solid white;
+margin-top:20px;
+padding-left:20px;
+}
+
+.timeline-item{
+margin-bottom:25px;
+position:relative;
+}
+
+.timeline-item::before{
+content:"";
+position:absolute;
+left:-28px;
+top:5px;
+width:15px;
+height:15px;
+background:white;
+border-radius:50%;
+}
+#finalScreen{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+color:white;
+z-index:9999;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+}
+ 
+#loading-screen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#111;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:10000;
+}
+
+.loadbar{
+width:70%;
+height:20px;
+background:#333;
+border-radius:10px;
+overflow:hidden;
+}
+
+#load-bar{
+height:100%;
+width:0%;
+background:#ff758c;
+}
+ 
+#timer-overlay{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+color:white;
+z-index:9999;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+</style>
+</head>
+
+<body> 
+<div id="loading-screen">
+
+<h2>Downloading Sakshi's Birthday Surprise for Ashutosh ❤️</h2>
+
+<div class="loadbar">
+<div id="load-bar"></div>
+</div>
+
+<p id="load-percent">0%</p>
+
+</div>
+ 
+<!-- <div id="timer-overlay">
+
+<h1>Wait for it Ashutosh 🤫</h1>
+<p>Your birthday surprise unlocks at midnight</p>
+<h2 id="countdown"></h2>
+
+</div> -->
+
+<div class="container">
+
+<h1>Happy Birthday Ashutosh 🎂</h1>
+
+<div class="glass-card hero-card">
+<h3>To My Favorite Human ❤️</h3>
+<p>You are the syntax to my code. Without you my life doesn't compile.</p>
+</div>
+
+<div class="glass-card">
+
+<h3>❤️ Reasons Why Sakshi Loves Ashutosh</h3>
+
+<ul style="text-align:left">
+<li>Tumhari smile dekh ke automatically mood acha ho jata hai</li>
+<li>Tum bina reason ke bhi mujhe special feel kara dete ho</li>
+<li>Mere random drama ko tolerate kar lete ho 😜</li>
+<li>Mujhe motivate karte ho jab mai overthink karti hoon</li>
+<li>Mere saath har moment fun bana dete ho</li>
+<li>Tumhare saath safe feel hota hai</li>
+<li>And because... tum Ashutosh ho ❤️</li>
+<li>Because you're YOU ❤️</li>
+</ul>
+
+</div>
+<div id="lovePopup">
+
+<div class="popup-card">
+
+<h2>❤️ Congratulations Ashu 😌</h2>
+
+<p>
+
+Ab officially confirm ho gaya hai...
+
+Tum life bhar ke liye  
+<strong>Sakshi ke ho chuke ho</strong> 😌❤️
+
+Iska matlab:
+
+• Unlimited hugs 🤗  
+• Random drama 😜  
+• Late night talks 🌙  
+• Aur lifetime love 💖
+
+Escape option unfortunately available nahi hai.
+
+</p>
+
+<button onclick="closePopup()">I Accept My Fate ❤️</button>
+
+</div>
+
+</div>
+
+<div class="glass-card">
+
+<h3>💌 Secret Love Letter</h3>
+
+<button onclick="showLetter()">Open Letter</button>
+
+<div id="letter" style="display:none;margin-top:20px">
+
+<p style="text-align:left">
+
+Dear Ashutosh,
+
+From the day you came into my life everything became brighter.
+
+You are not just someone I love,
+you are someone I trust, admire, and feel lucky to have.
+
+Happy Birthday my favorite person ❤️
+
+— Sakshi
+
+</p>
+
+</div>
+
+</div>
+
+<div class="glass-card">
+
+<h3>⏳ Our Love Timer</h3>
+<h2 id="loveTimer"></h2>
+
+</div>
+
+<div class="glass-card">
+
+<h3>One Very Important Question 💌</h3>
+
+<p>
+Will you continue being my favorite person,  
+my safe place,  
+and the reason behind my smile… forever? ❤️
+</p>
+
+<div class="btn-container">
+<button id="yes" onclick="handleYes()" onmouseover="growYes()">YES ❤️</button>
+<button id="no" onmouseover="moveNo()">NO 😜</button>
+</div>
+
+</div>
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="glass-card">
+
+<h3>🎆 Birthday Fireworks</h3>
+
+<button onclick="fireworks()">Celebrate 🎆</button>
+
+</div>
+
+<div class="glass-card">
+
+<h3>💞 Our Little Story</h3>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<h4>🌸 The First Time We Talked</h4>
+<p>
+Sach bolu to us din mujhe idea bhi nahi tha  
+ki ek simple conversation meri life ka  
+favorite chapter ban jayega.
+</p>
+</div>
+
+<div class="timeline-item">
+<h4>😊 When You Became Important</h4>
+<p>
+Pata hi nahi chala kab tum ek normal person se  
+meri daily happiness ban gaye.
+</p>
+</div>
+
+<div class="timeline-item">
+<h4>❤️ Today</h4>
+<p>
+Aaj situation simple hai —  
+tum ho to sab acha lagta hai.
+</p>
+</div>
+
+<div class="timeline-item">
+<h4>🎂 Today Is Your Day</h4>
+<p>
+Aur aaj ka din special hai  
+because it's the birthday of the person  
+who makes my life brighter.
+</p>
+</div>
+
+</div>
+
+</div>
+<div class="glass-card">
+
+<h3>🎂 Make A Birthday Wish</h3>
+
+<p>Click the candle to blow it!</p>
+
+<div id="cake" onclick="blowCandle()">
+🎂
+</div>
+
+</div>
+
+<div class="glass-card">
+
+<h3>💖 Unlock My Heart</h3>
+
+<p>Catch 5 items to reveal your Birthday Voucher</p>
+
+<div class="progress-container">
+<div id="progress-bar"></div>
+</div>
+
+<div id="gameArea"></div>
+
+</div>
+
+<div id="secretMessage" class="glass-card">
+
+<h2>Happy Birthday Ashutosh ❤️</h2>
+
+<div class="voucher">
+
+<p><b>Voucher:</b> Unlimited Hugs + One Special Date</p>
+<p>From: Sakshi ❤️</p>
+
+</div>
+
+</div>
+
+</div> 
+<div id="finalScreen">
+
+<h1 style="font-family:Dancing Script;font-size:60px">
+Happy Birthday Ashutosh ❤️
+</h1>
+
+<p style="max-width:600px">
+
+Ashu,
+
+Sach kahu to life perfect nahi hoti...
+
+par tumhare saath life thodi zyada beautiful lagti hai.
+
+Happy Birthday to the person  
+jo meri life ko special banata hai ❤️
+
+</p>
+
+<h2>— Sakshi ❤️</h2>
+
+</div>
+
+<script> 
+
+let load=0
+
+const loading=setInterval(()=>{
+
+if(load>=100){
+
+clearInterval(loading)
+
+document.getElementById("loading-screen").style.display="none"
+
+checkTimer()
+
+}
+
+else{
+
+load++
+
+document.getElementById("load-bar").style.width=load+"%"
+document.getElementById("load-percent").innerText=load+"%"
+
+}
+
+},30)
+ 
+function checkTimer(){
+
+const now=new Date()
+
+const target=new Date(2026,2,14,0,0,0)
+
+if(now<target){
+
+document.getElementById("timer-overlay").style.display="flex"
+
+const timer=setInterval(()=>{
+
+const diff=target-new Date()
+
+if(diff<=0){
+
+clearInterval(timer)
+
+document.getElementById("timer-overlay").style.display="none"
+
+}
+
+const h=Math.floor(diff/3600000)
+const m=Math.floor((diff%3600000)/60000)
+const s=Math.floor((diff%60000)/1000)
+
+document.getElementById("countdown").innerText=
+h+"h "+m+"m "+s+"s"
+
+},1000)
+
+}
+
+} 
+function showLetter(){
+document.getElementById("letter").style.display="block"
+} 
+const startDate=new Date("2023-05-01")
+
+setInterval(()=>{
+
+const now=new Date()
+const diff=now-startDate
+
+const days=Math.floor(diff/(1000*60*60*24))
+const hours=Math.floor((diff/(1000*60*60))%24)
+
+document.getElementById("loveTimer").innerText=
+days+" Days "+hours+" Hours ❤️"
+
+},1000) 
+function fireworks(){
+
+confetti({
+particleCount:400,
+spread:180,
+origin:{y:0.6}
+})
+
+}
+ 
+function moveNo(){
+
+const btn=document.getElementById("no")
+
+btn.style.left=Math.random()*300+"px"
+btn.style.top=Math.random()*80+"px"
+
+}
+
+let scale=1
+
+function growYes(){
+
+scale+=0.1
+document.getElementById("yes").style.transform="scale("+scale+")"
+
+}
+
+function handleYes(){
+
+confetti({
+particleCount:300,
+spread:160,
+origin:{y:0.6}
+})
+
+document.getElementById("lovePopup").style.display="flex"
+
+}
+ 
+function closePopup(){
+document.getElementById("lovePopup").style.display="none"
+}
+let score = 0
+const targetScore = 5
+
+function spawnHeart(){
+
+if(score >= targetScore) return
+
+const heart = document.createElement("div")
+
+heart.innerHTML = ["❤️","💖","🎂","💕","💝"][Math.floor(Math.random()*5)]
+
+heart.style.position = "absolute"
+heart.style.left = Math.random()*90 + "%"
+heart.style.top = Math.random()*80 + "%"
+heart.style.fontSize = "40px"
+heart.style.cursor = "pointer"
+
+heart.onclick = () => {
+
+score++
+
+document.getElementById("progress-bar").style.width = (score/targetScore*100) + "%"
+
+heart.remove()
+
+if(score === targetScore){
+
+document.getElementById("secretMessage").style.display = "block"
+
+confetti({
+particleCount:300,
+spread:150
+})
+
+setTimeout(()=>{
+
+document.getElementById("finalScreen").style.display="flex"
+
+},4000)
+
+}
+
+}
+
+document.getElementById("gameArea").appendChild(heart)
+
+setTimeout(()=>{
+if(heart.parentNode) heart.remove()
+},2000)
+
+}
+
+setInterval(spawnHeart,900)
+
+const music = document.getElementById("bgMusic")
+
+document.addEventListener("click", () => {
+
+music.muted = false
+music.play().catch(()=>{})
+
+},{once:true})
+
+</script>
+
+</body>
+</html>
